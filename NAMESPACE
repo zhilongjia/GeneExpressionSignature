@@ -1,0 +1,2 @@
+export(getRLs,RankMerging,ScorePGSEA,ScoreGSEA,SignatureDistance)
+       
