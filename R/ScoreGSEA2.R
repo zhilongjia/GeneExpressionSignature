@@ -1,4 +1,4 @@
-ScoreGSEA <-
+ScoreGSEA2 <-
 function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
 
         #compute the distance of ranked PRL
@@ -6,14 +6,12 @@ function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
        {
            ScoringDistance=match.arg(ScoringDistance,c("avg","max"))
 	   ES=matrix(1) 
-	   if (ncol(exprs(PRL))<=1){
-		stop("the number of column of argument PRL must be greater than 1")
-           }
-           KBR=PRL[,1]
-	   PRLcol=ncol(exprs(PRL))
+
+       KBR=PRL[,1,drop=F]
+	   PRLcol=ncol(PRL)
 	   for (i in 2:PRLcol){
-		newPRL=PRL[,i]
-		d=integratePRL(ES,KBR,newPRL,SignatureLength,ScoringDistance)
+		newPRL=PRL[,i,drop=F]
+		d=integratePRL2(ES,KBR,newPRL,SignatureLength,ScoringDistance)
 		ES=d[[2]]
 		KBR=d[[1]]
 	   }
@@ -39,16 +37,11 @@ function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
 
         ScoringDistance=match.arg(ScoringDistance,c("avg","max"))
 	PRL=MergingSet
-	if (is.null(ncol(exprs(PRL)))==TRUE){
-		stop("the class of argument MergingSet is incorrect")
-	}
-	if (ncol(exprs(PRL))<=1){
-		stop("the number of samples of argument MergingSet must be greater than 1")
-	}
+
         dis=PRL.Distance(PRL,SignatureLength,ScoringDistance)
         if (p.value){
            p.results=matrix(0,nrow(dis),ncol(dis))
-           prb_num=nrow(exprs(PRL))
+           prb_num=nrow(PRL)
            RPdis=c()
            RP1=sample(prb_num);
            for (i in 1:10000){
