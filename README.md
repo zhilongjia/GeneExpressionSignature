@@ -17,7 +17,7 @@ This version (1.13.0) is based on [GeneExpressionSignature version 1.12.0; origi
 
 data <- makeExpressionSet(data)
 
-ds=ScoreGSEA(MergingSet,250,"avg")
+ds=ScoreGSEA(data,250,"avg")
 
 
 ## Reference:
