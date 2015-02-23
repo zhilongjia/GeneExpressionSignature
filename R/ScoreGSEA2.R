@@ -36,7 +36,7 @@ function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
        } 
 
         ScoringDistance=match.arg(ScoringDistance,c("avg","max"))
-	PRL=MergingSet
+        PRL=data.matrix(MergingSet)
 
         dis=PRL.Distance(PRL,SignatureLength,ScoringDistance)
         if (p.value){

@@ -36,11 +36,11 @@ function(ES,PRL,newPRL,SignatureLength,ScoringDistance=c("avg", "max")){
               distances = pmax(distances,t(distances))/2
 	distances = 1-distances
 	colnames(ES)=colnames(PRL)
-	#colnames(ES)=rownames(rbind(PRL, newPRL))
 	colnames(PRL)=colnames(ES)
 	colnames(distances)=colnames(PRL)
 	rownames(distances)=colnames(ES)
 	rownames(ES)=colnames(ES)
+	
 	PRL=PRL
 	list(PRL,ES,distances)
 }
