@@ -1,2 +1,2 @@
-export(getRLs,RankMerging,ScorePGSEA,ScoreGSEA,ScoreGSEA2,SignatureDistance)
+export(getRLs,RankMerging,ScorePGSEA,ScoreGSEA,ScoreGSEA,makeExpressionSet,SignatureDistance)
        
