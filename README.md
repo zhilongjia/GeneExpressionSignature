@@ -15,7 +15,6 @@ This version (1.13.0) is based on [GeneExpressionSignature version 1.12.0; origi
 
 ## Example:
     dat <- data.frame(d1=1:6, d2=6:1)
-    dat <- data.frame(d1=1:6, d2=6:1)
     dat <- makeExpressionSet(dat)
     ds <- ScoreGSEA(dat, 250, "avg")
 
