@@ -16,7 +16,10 @@ This version (1.13.0) is based on [GeneExpressionSignature version 1.12.0; origi
 ## Example:
     dat <- data.frame(d1=1:6, d2=6:1)
     dat <- makeExpressionSet(dat)
+    # Distance matrix
     ds <- ScoreGSEA(dat, 250, "avg")
+    # Simlarity matrix
+    sim <- 1 - ds
 
 
 ## Reference:
