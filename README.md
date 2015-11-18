@@ -14,7 +14,7 @@ This version (1.13.0) is based on [GeneExpressionSignature version 1.12.0; origi
 *ScoreGSEA2* and *integratePRL2* are discarded due to the birth of makeExpressionSet.
 
 ## Example:
-    dat <- data.frame(d1=1:6, d2=6:1)
+    dat <- data.frame(d1=1:6000, d2=6000:1, d3=sample(1:6000, 6000))
     dat <- makeExpressionSet(dat)
     # Distance matrix
     ds <- ScoreGSEA(dat, 250, "avg")
