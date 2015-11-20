@@ -20,4 +20,7 @@ dat <- data.frame(d1=1:6, d2=6:1)
 datExp <- makeExpressionSet(dat)
 
 }
+\author{
+Zhilong Jia
+}
 

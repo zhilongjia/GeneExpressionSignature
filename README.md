@@ -20,6 +20,8 @@ This version (1.13.0) is based on [GeneExpressionSignature version 1.12.0; origi
     # Simlarity matrix
     sim <- 1 - ds
 
+## Installation:
+    devtools::install_github("zhilongjia/cogena")
 
 ## Reference:
 Cao Y (2012). GeneExpressionSignature: Gene Expression Signature based Similarity Metric. R package version 1.12.0.
