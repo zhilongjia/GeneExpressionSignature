@@ -11,7 +11,6 @@ This version (1.13.0) is based on [GeneExpressionSignature version 1.12.0; origi
 
 **makeExpressionSet** : making ExpressionSet object from a matrix or data.frame with colnames.
 
-*ScoreGSEA2* and *integratePRL2* are discarded due to the birth of makeExpressionSet.
 
 ## Example:
     dat <- data.frame(d1=1:6000, d2=6000:1, d3=sample(1:6000, 6000))
