@@ -1,3 +1,8 @@
+#' integratePRL
+#' 
+#' integratePRL
+#' 
+#' @keywords internal
 integratePRL <-
 function(ES,PRL,newPRL,SignatureLength,ScoringDistance=c("avg", "max")){
         ScoringDistance=match.arg(ScoringDistance,c("avg","max"))

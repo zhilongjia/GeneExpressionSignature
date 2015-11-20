@@ -1,3 +1,9 @@
+#' krubor
+#' 
+#' krubor
+#' 
+#' @keywords internal
+#' 
 krubor <-
 function(MergingDistance=c("Spearman", "Kendall"),...){
 

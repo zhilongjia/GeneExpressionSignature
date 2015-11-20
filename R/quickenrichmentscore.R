@@ -1,3 +1,9 @@
+#' quickenrichmentscore
+#' 
+#' quickenrichmentscore
+#' 
+#' @keywords internal
+#' 
 quickenrichmentscore <-
 function(S,S1,List){
 	Or_list=List;

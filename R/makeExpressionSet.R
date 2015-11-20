@@ -3,6 +3,8 @@
 #' Convert data.frame into ExpressionSet Object.
 #' @param dat a data.frame with gene in row, sample in column
 #' @return an ExpressionSet object
+#' @author Zhilong Jia
+#' @import Biobase
 #' @export
 #' @examples 
 #' dat <- data.frame(d1=1:6, d2=6:1)

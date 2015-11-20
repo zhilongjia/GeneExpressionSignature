@@ -1,3 +1,8 @@
+#' FootruleMatrix
+#' 
+#' FootruleMatrix
+#' 
+#' @keywords internal
 FootruleMatrix <-
 function(Rankings,MergingDistance=c("Spearman", "Kendall"),n){
 
