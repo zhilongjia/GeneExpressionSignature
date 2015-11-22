@@ -42,6 +42,21 @@ NULL
 
 
 
+#' LogFC sample data
+#' 
+#' LogFC sample data, contining logFC values, have 5 samples with 4356 genes.
+#' 
+#' 
+#' @name logfcData
+#' @docType data
+#' @format data.frame
+#' @keywords data datasets
+#' @author Zhilong Jia
+#' @examples
+#' 
+#' data(exampleSet)
+#' 
+NULL
 
 
 

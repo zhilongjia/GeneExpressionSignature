@@ -3,6 +3,7 @@
 export(RankMerging)
 export(ScoreGSEA)
 export(ScorePGSEA)
+export(ScoreX)
 export(SignatureDistance)
 export(getRLs)
 export(makeExpressionSet)
