@@ -4,10 +4,12 @@
 \alias{makeExpressionSet}
 \title{Convert data.frame into ExpressionSet Object.}
 \usage{
-makeExpressionSet(dat)
+makeExpressionSet(dat, state = colnames(dat))
 }
 \arguments{
 \item{dat}{a data.frame with gene in row, sample in column}
+
+\item{state}{sample state. For multi instances.}
 }
 \value{
 an ExpressionSet object
@@ -16,8 +18,15 @@ an ExpressionSet object
 Convert data.frame into ExpressionSet Object.
 }
 \examples{
-dat <- data.frame(d1=1:6, d2=6:1)
-datExp <- makeExpressionSet(dat)
+dat <- data.frame(d1=1:600, D1=600:1, d2=sample(600))
+datExp <- makeExpressionSet(dat, state=c("d", "D", "d"))
+
+# Only for rankMerging
+MergingSet <- RankMerging(datExp,"Spearman",weighted=TRUE)
+#ds <- ScoreGSEA(datExp, 250)
+#ds1 <- ScorePGSEA(datExp, 250)
+#ds2 <- ScoreGSEA(MergingSet, 250)
+#ds3 <- ScorePGSEA(MergingSet, 250)
 
 }
 \author{
