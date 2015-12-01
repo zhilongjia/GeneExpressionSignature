@@ -57,6 +57,7 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), p.value=F
      pgscores=pgscores[-1,]
      Mvalue=max(abs(pgscores))
      pgscores=pgscores/max(abs(pgscores))  
+     # Due to the PGSEA actually use ratio instead of rank
      if (pgscores[1,1]>0){
        pgscores=pgscores
      } else{

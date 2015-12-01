@@ -80,9 +80,19 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, 
         pgscores=-pgscores
     } 
      rownames(pgscores)=colnames(pgscores)
-     p.results=matrix(0,n,n)
-     if (ScoringDistance=="avg"){
-        distances=1-(pgscores+t(pgscores))/2
+     
+     
+     if (ScoringDistance=="avg"){ 
+         distances=1-(pgscores+t(pgscores))/2 
+     } else {
+         # the orignial distances for "max" is incorrect.
+         # distances=pmin(1-pgscores, t(1-pgscores) )/2
+         distances=1 - pmax(pgscores, t(pgscores) )    
+     }
+     
+     # P-value
+     if (isTRUE(p.value) & ScoringDistance=="avg"){
+        p.results=matrix(0,n,n)
         for (i in 1:n){
            for (j in 1:n){
                if (distances[i,j]<1)
@@ -91,10 +101,8 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, 
                   p.results[i,j]=2 * (1-pnorm(distances[i,j],mean=1,sd=1/(2*Mvalue)))
             }
         }
-     } else{
-    # the orignial distances for "max" is incorrect.
-       # distances=pmin(1-pgscores, t(1-pgscores) )/2
-       distances=1 - pmax(pgscores, t(pgscores) )
+     } else if (isTRUE(p.value) & ScoringDistance=="max") {
+    
        p.results=matrix(0,nrow(distances),ncol(distances))
        for (i in 1:n){
            for (j in 1:n){
