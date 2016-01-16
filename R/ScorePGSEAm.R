@@ -69,7 +69,7 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, 
     }
     parallel::stopCluster(cl)
     
-    if (verbose) {print ("Paralleling Done."); save.image("./ScorePGSEA_tmp.RData")}
+    if (verbose) {print ("Paralleling Done."); save.image(paste0(runif(1), ".RData"))}
     ############################################################################
     
     Mvalue=max(abs(pgscores), na.rm=TRUE)
