@@ -41,7 +41,7 @@
 #' 
 #' @export ScorePGSEAm
 ScorePGSEAm <-
-function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, p.value=F, verbose=FALSE){
+function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, p.value=FALSE, verbose=FALSE){
     ScoringDistance=match.arg(ScoringDistance,c("avg","max"))
     PRLs=exprs(MergingSet)
     n=ncol(PRLs)
@@ -54,7 +54,7 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, 
     doParallel::registerDoParallel(cl)
     if (verbose) {print(paste("getDoParWorkers:", foreach::getDoParWorkers()))}
     nc=NULL
-    pgscores <- foreach::foreach (nc = 1:n, .combine=rbind) %dopar% {
+    pgscores <- foreach::foreach (nc = 1:n, .combine=rbind, .verbose=verbose) %dopar% {
         if (verbose) {print (paste("Starting nClust:", nc))}
         # setClass("smc",representation(reference="character",desc="character",source="character",design="character",identifier="character",species="character",data="character",private="character", creator="character",ids="vector"))
         
@@ -68,12 +68,13 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, 
         pgscore=(uppgscore-downpgscore)/2
     }
     parallel::stopCluster(cl)
-    # pgscores=as.matrix(pgscores)
-    # pgscores=pgscores[-1,]
+    
+    if (verbose) {print ("Paralleling Done."); save.image("./ScorePGSEA_tmp.RData")}
     ############################################################################
     
-    Mvalue=max(abs(pgscores))
-    pgscores=pgscores/max(abs(pgscores))  
+    Mvalue=max(abs(pgscores), na.rm=TRUE)
+    pgscores=pgscores/Mvalue
+    # the distance of oneself (pgscores[1,1])
     if (pgscores[1,1]>0){
         pgscores=pgscores
     } else{

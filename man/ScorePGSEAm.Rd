@@ -5,7 +5,7 @@
 \title{Compute pairwise distances between samples with method in package PGSEA}
 \usage{
 ScorePGSEAm(MergingSet, SignatureLength, ScoringDistance = c("avg", "max"),
-  ncore = 2, p.value = F, verbose = FALSE)
+  ncore = 2, p.value = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{MergingSet}{an ExpressionSet object. The assay data represents the
