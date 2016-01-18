@@ -69,8 +69,9 @@ function(MergingSet, SignatureLength, ScoringDistance=c("avg", "max"), ncore=2, 
     }
     parallel::stopCluster(cl)
     
-    if (verbose) {print ("Paralleling Done."); save.image(paste0(runif(1), ".RData"))}
+    if (verbose) {print ("Paralleling Done.")}
     ############################################################################
+    if (any(is.na(pgscores))) {warning("NA appears in the results."); return (pgscores)}
     
     Mvalue=max(abs(pgscores), na.rm=TRUE)
     pgscores=pgscores/Mvalue
