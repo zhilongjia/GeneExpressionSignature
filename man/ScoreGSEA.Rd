@@ -5,7 +5,7 @@
 \title{Compute pairwise distances between samples with method in package GSEA}
 \usage{
 ScoreGSEA(MergingSet, SignatureLength, ScoringDistance = c("avg", "max"),
-  p.value = F)
+  p.value = F, verbose = FALSE)
 }
 \arguments{
 \item{MergingSet}{an ExpressionSet object. The assay data represents the
@@ -25,6 +25,8 @@ Enrichment Score Distance (avg), and the Maximum Enrichment Score Distance
 
 \item{p.value}{logical, if TRUE return a matrix of p.values of the distance
 matrix, default FALSE}
+
+\item{verbose}{verbose}
 }
 \value{
 an distance-matrix, the max distance is more sensitive to weak

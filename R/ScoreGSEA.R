@@ -25,6 +25,7 @@
 #' @param ScoringDistance the distance measurements between PRLs: the Average
 #' Enrichment Score Distance (avg), and the Maximum Enrichment Score Distance
 #' (max).
+#' @param verbose verbose
 #' @param p.value logical, if TRUE return a matrix of p.values of the distance
 #' matrix, default FALSE
 #' @return an distance-matrix, the max distance is more sensitive to weak
@@ -50,10 +51,10 @@
 #' 
 #' @export ScoreGSEA
 ScoreGSEA <-
-function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
+function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F, verbose=FALSE){
 
         #compute the distance of ranked PRL
-        PRL.Distance <-function(PRL,SignatureLength,ScoringDistance=c("avg", "max"))
+        PRL.Distance <-function(PRL,SignatureLength,ScoringDistance=c("avg", "max"), verbose=verbose)
        {
            ScoringDistance=match.arg(ScoringDistance,c("avg","max"))
 	   ES=matrix(1) 
@@ -63,6 +64,9 @@ function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
            KBR=PRL[,1]
 	   PRLcol=ncol(exprs(PRL))
 	   for (i in 2:PRLcol){
+	    if (verbose) {
+	        print (paste(i, "out of ", ncol(exprs(PRL) )))
+	    }
 		newPRL=PRL[,i]
 		d=integratePRL(ES,KBR,newPRL,SignatureLength,ScoringDistance)
 		ES=d[[2]]
@@ -96,7 +100,7 @@ function(MergingSet,SignatureLength,ScoringDistance=c("avg", "max"),p.value=F){
 	if (ncol(exprs(PRL))<=1){
 		stop("the number of samples of argument MergingSet must be greater than 1")
 	}
-        dis=PRL.Distance(PRL,SignatureLength,ScoringDistance)
+        dis=PRL.Distance(PRL,SignatureLength,ScoringDistance, verbose=verbose)
         if (p.value){
            p.results=matrix(0,nrow(dis),ncol(dis))
            prb_num=nrow(exprs(PRL))
